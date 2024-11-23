@@ -34,7 +34,8 @@ class RemoteEDF2ASC():
     def _download_edf(self, fname):
         host_edf = fname
         local_edf = os.path.join(self.download_dir, fname)
-        
+        assert not os.path.exists(local_edf), f'{local_edf} already exists.'
+
         try:
             print("trying download of " + host_edf)
             self.el_tracker.receiveDataFile(host_edf, local_edf)
